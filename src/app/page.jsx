@@ -1,5 +1,6 @@
 'use client';
 
+import Timer from '@/components/Timer';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -146,9 +147,7 @@ export default function Home() {
             id='minigame'
             className='w-72 bg-zinc-700 flex flex-col gap-2 p-4 rounded'
           >
-            <div id='timer'>
-              <div id='progress' style={{ width: `${width}%` }}></div>
-            </div>
+            <Timer width={width} />
             <div id='keypad' className='grid grid-cols-4'>
               {numbers.map((number, index) => {
                 const row = Math.floor(index / 4);
