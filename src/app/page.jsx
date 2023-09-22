@@ -1,5 +1,6 @@
 'use client';
 
+import Keypad from '@/components/Keypad';
 import Timer from '@/components/Timer';
 import { useEffect, useState } from 'react';
 
@@ -148,116 +149,13 @@ export default function Home() {
             className='w-72 bg-zinc-700 flex flex-col gap-2 p-4 rounded'
           >
             <Timer width={width} />
-            <div id='keypad' className='grid grid-cols-4'>
-              {numbers.map((number, index) => {
-                const row = Math.floor(index / 4);
-                if (row % 2 === 0) {
-                  if (number % 2 === 0) {
-                    return (
-                      <button
-                        onClick={() => {
-                          if (start) {
-                            if (number === activeNumber) {
-                              document.getElementById(
-                                number
-                              ).style.backgroundColor = 'green';
-                              setActiveNumber((prevNumber) => prevNumber + 1);
-                            } else {
-                              document.getElementById(
-                                number
-                              ).style.backgroundColor = 'red';
-                              setErrors((prevErrors) => prevErrors + 1);
-                            }
-                          }
-                        }}
-                        className={`bg-zinc-800 p-4 text-green-900 font-bold text-center`}
-                        key={number}
-                        id={number}
-                      >
-                        {number}
-                      </button>
-                    );
-                  } else {
-                    return (
-                      <button
-                        onClick={() => {
-                          if (start) {
-                            if (number === activeNumber) {
-                              document.getElementById(
-                                number
-                              ).style.backgroundColor = 'green';
-                              setActiveNumber((prevNumber) => prevNumber + 1);
-                            } else {
-                              document.getElementById(
-                                number
-                              ).style.backgroundColor = 'red';
-                              setErrors((prevErrors) => prevErrors + 1);
-                            }
-                          }
-                        }}
-                        className={`bg-zinc-900 p-4 text-green-900 font-bold text-center`}
-                        key={number}
-                        id={number}
-                      >
-                        {number}
-                      </button>
-                    );
-                  }
-                } else {
-                  if (number % 2 !== 0) {
-                    return (
-                      <button
-                        onClick={() => {
-                          if (start) {
-                            if (number === activeNumber) {
-                              document.getElementById(
-                                number
-                              ).style.backgroundColor = 'green';
-                              setActiveNumber((prevNumber) => prevNumber + 1);
-                            } else {
-                              document.getElementById(
-                                number
-                              ).style.backgroundColor = 'red';
-                              setErrors((prevErrors) => prevErrors + 1);
-                            }
-                          }
-                        }}
-                        className={`bg-zinc-800 p-4 text-green-900 font-bold text-center`}
-                        key={number}
-                        id={number}
-                      >
-                        {number}
-                      </button>
-                    );
-                  } else {
-                    return (
-                      <button
-                        onClick={() => {
-                          if (start) {
-                            if (number === activeNumber) {
-                              document.getElementById(
-                                number
-                              ).style.backgroundColor = 'green';
-                              setActiveNumber((prevNumber) => prevNumber + 1);
-                            } else {
-                              document.getElementById(
-                                number
-                              ).style.backgroundColor = 'red';
-                              setErrors((prevErrors) => prevErrors + 1);
-                            }
-                          }
-                        }}
-                        className={`bg-zinc-900 p-4 text-green-900 font-bold text-center`}
-                        key={number}
-                        id={number}
-                      >
-                        {number}
-                      </button>
-                    );
-                  }
-                }
-              })}
-            </div>
+            <Keypad
+              numbers={numbers}
+              activeNumber={activeNumber}
+              setActiveNumber={setActiveNumber}
+              setErrors={setErrors}
+              start={start}
+            />
           </div>
         </div>
       </div>
