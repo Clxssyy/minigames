@@ -36,7 +36,7 @@ const Keypad = (props) => {
                 }
               }
             }}
-            className={`${color} p-4 text-green-700 font-bold text-center`}
+            className={`${color} p-4 text-green-700 font-bold text-center select-none`}
             key={number}
             id={number}
           >
