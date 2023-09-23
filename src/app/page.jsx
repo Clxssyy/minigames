@@ -112,7 +112,7 @@ export default function Home() {
       <div className='h-full w-full flex gap-2 place-items-center justify-center'>
         <div id='options' className='flex flex-col gap-2'>
           <div className='flex gap-2'>
-            <select name='' id='difficultyOptions'>
+            <select id='difficulty-options' aria-label='difficulty-options'>
               <option value={0}>0</option>
               <option value={1}>1</option>
               <option value={2}>2</option>
@@ -122,7 +122,7 @@ export default function Home() {
               onClick={() => {
                 if (!start) {
                   const newDifficulty =
-                    document.getElementById('difficultyOptions').value;
+                    document.getElementById('difficulty-options').value;
                   setDifficulty(Number(newDifficulty));
                 }
               }}
@@ -134,18 +134,18 @@ export default function Home() {
           <div className='flex gap-2'>
             <input
               type='number'
-              name=''
-              id='a'
+              id='time-input'
               min={1}
               max={60}
               defaultValue={30}
+              aria-label='time-input'
             />
             <button
               onClick={() => {
                 if (!start) {
-                  const newTime = document.getElementById('a').value;
+                  const newTime = document.getElementById('time-input').value;
                   setTime(newTime);
-                  document.getElementById('a').value = '';
+                  document.getElementById('time-input').value = 30;
                 }
               }}
               className='bg-green-900 rounded p-2'
