@@ -11,9 +11,17 @@ export default function Home() {
   );
   const [activeNumber, setActiveNumber] = useState(1);
   const [errors, setErrors] = useState(0);
+  const [status, setStatus] = useState([]);
   const [time, setTime] = useState(30);
   const [start, setStart] = useState(false);
   const [difficulty, setDifficulty] = useState(0);
+
+  useEffect(() => {
+    for (const x of status) {
+      document.getElementById(x).style.backgroundColor = '';
+    }
+    setStatus([]);
+  }, [start]);
 
   useEffect(() => {
     if (start) {
@@ -41,7 +49,6 @@ export default function Home() {
   }, [time, start]);
 
   useEffect(() => {
-    console.log(errors);
     if (errors === 3) {
       setErrors(0);
       setActiveNumber(1);
@@ -154,6 +161,7 @@ export default function Home() {
               activeNumber={activeNumber}
               setActiveNumber={setActiveNumber}
               setErrors={setErrors}
+              setStatus={setStatus}
               start={start}
             />
           </div>

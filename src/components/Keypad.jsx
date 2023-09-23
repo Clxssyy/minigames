@@ -25,9 +25,11 @@ const Keypad = (props) => {
                   document.getElementById(number).style.backgroundColor =
                     'green';
                   props.setActiveNumber((prevNumber) => prevNumber + 1);
+                  props.setStatus((x) => [...x, number]);
                 } else {
                   document.getElementById(number).style.backgroundColor = 'red';
-                  props.setErrors((prevErrors) => prevErrors + 1);
+                  props.setErrors((errors) => errors + 1);
+                  props.setStatus((x) => [...x, number]);
                 }
               }
             }}
