@@ -6,15 +6,15 @@ const Keypad = (props) => {
         let color;
         if (row % 2 === 0) {
           if (index % 2 === 0) {
-            color = '800';
+            color = 'bg-zinc-800';
           } else {
-            color = '900';
+            color = 'bg-zinc-900';
           }
         } else {
           if (index % 2 === 0) {
-            color = '900';
+            color = 'bg-zinc-900';
           } else {
-            color = '800';
+            color = 'bg-zinc-800';
           }
         }
         return (
@@ -33,7 +33,7 @@ const Keypad = (props) => {
                 }
               }
             }}
-            className={`bg-zinc-${color} p-4 text-green-900 font-bold text-center`}
+            className={`${color} p-4 text-green-900 font-bold text-center`}
             key={number}
             id={number}
           >
