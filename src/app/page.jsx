@@ -120,9 +120,11 @@ export default function Home() {
             </select>
             <button
               onClick={() => {
-                const newDifficulty =
-                  document.getElementById('difficultyOptions').value;
-                setDifficulty(Number(newDifficulty));
+                if (!start) {
+                  const newDifficulty =
+                    document.getElementById('difficultyOptions').value;
+                  setDifficulty(Number(newDifficulty));
+                }
               }}
               className='bg-green-900 rounded p-2'
             >
@@ -140,9 +142,11 @@ export default function Home() {
             />
             <button
               onClick={() => {
-                const newTime = document.getElementById('a').value;
-                setTime(newTime);
-                document.getElementById('a').value = '';
+                if (!start) {
+                  const newTime = document.getElementById('a').value;
+                  setTime(newTime);
+                  document.getElementById('a').value = '';
+                }
               }}
               className='bg-green-900 rounded p-2'
             >
