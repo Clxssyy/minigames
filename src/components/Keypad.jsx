@@ -1,20 +1,20 @@
 const Keypad = (props) => {
   return (
-    <div className='grid grid-cols-4'>
+    <div className='grid grid-cols-4 border border-black'>
       {props.numbers.map((number, index) => {
         const row = Math.floor(index / 4);
         let color;
         if (row % 2 === 0) {
           if (index % 2 === 0) {
-            color = 'bg-zinc-800';
+            color = 'bg-zinc-600';
           } else {
-            color = 'bg-zinc-900';
+            color = 'bg-zinc-700';
           }
         } else {
           if (index % 2 === 0) {
-            color = 'bg-zinc-900';
+            color = 'bg-zinc-700';
           } else {
-            color = 'bg-zinc-800';
+            color = 'bg-zinc-600';
           }
         }
         return (
@@ -33,7 +33,7 @@ const Keypad = (props) => {
                 }
               }
             }}
-            className={`${color} p-4 text-green-900 font-bold text-center`}
+            className={`${color} p-4 text-green-700 font-bold text-center`}
             key={number}
             id={number}
           >

@@ -166,10 +166,10 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className='p-2 bg-gray-500 rounded'>
+        <div className='p-2 bg-zinc-700 rounded'>
           <div
             id='minigame'
-            className='w-72 bg-zinc-700 flex flex-col gap-2 p-4 rounded'
+            className='w-72 bg-zinc-800 flex flex-col gap-2 p-4 rounded'
           >
             <Timer width={width} />
             <Keypad
