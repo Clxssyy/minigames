@@ -25,6 +25,24 @@ export default function Home() {
 
   useEffect(() => {
     if (start) {
+      setNumbers(() => {
+        // randomize numbers
+        const range = 4 * (6 + difficulty);
+        const arr = [];
+        for (let i = 1; i <= range; i++) arr.push(i);
+        const newArr = [];
+        for (let i = 0; i < range; i++) {
+          const index = Math.floor(Math.random() * arr.length);
+          newArr.push(arr[index]);
+          arr.splice(index, 1);
+        }
+        setNumbers(newArr);
+      });
+    }
+  }, [start]);
+
+  useEffect(() => {
+    if (start) {
       function updateProgress() {
         setWidth((prevWidth) => {
           if (prevWidth > 0) {

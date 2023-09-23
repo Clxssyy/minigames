@@ -5,13 +5,13 @@ const Keypad = (props) => {
         const row = Math.floor(index / 4);
         let color;
         if (row % 2 === 0) {
-          if (number % 2 === 0) {
+          if (index % 2 === 0) {
             color = '800';
           } else {
             color = '900';
           }
         } else {
-          if (number % 2 === 0) {
+          if (index % 2 === 0) {
             color = '900';
           } else {
             color = '800';
