@@ -30,6 +30,9 @@ const Keypad = (props) => {
                   document.getElementById(number).style.backgroundColor = 'red';
                   props.setErrors((errors) => errors + 1);
                   props.setStatus((x) => [...x, number]);
+                  setTimeout(() => {
+                    document.getElementById(number).style.backgroundColor = '';
+                  }, 500);
                 }
               }
             }}
