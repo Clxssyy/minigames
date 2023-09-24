@@ -3,6 +3,7 @@
 import Keypad from '@/components/Keypad';
 import Timer from '@/components/Timer';
 import { useEffect, useState } from 'react';
+import { IoIosFingerPrint } from 'react-icons/io';
 
 export default function Home() {
   const [width, setWidth] = useState(0);
@@ -168,24 +169,8 @@ export default function Home() {
               Set Time
             </button>
           </div>
-          <div className='flex gap-2'>
-            <button
-              onClick={() => {
-                if (numbers.length > 0) {
-                  setStart(!start);
-                }
-                if (start) {
-                  setErrors(0);
-                  setActiveNumber(1);
-                }
-              }}
-              className='bg-red-400 p-2'
-            >
-              {start ? 'Stop' : 'Start'}
-            </button>
-          </div>
         </div>
-        <div className='p-2 bg-zinc-700 rounded'>
+        <div className='p-2 bg-zinc-700 rounded gap-2 flex flex-col place-items-center'>
           <div
             id='minigame'
             className='w-72 bg-zinc-800 flex flex-col gap-2 p-4 rounded'
@@ -204,6 +189,22 @@ export default function Home() {
               setStatus={setStatus}
               start={start}
             />
+          </div>
+          <div className='flex place-items-center'>
+            <button
+              onClick={() => {
+                if (numbers.length > 0) {
+                  setStart(!start);
+                }
+                if (start) {
+                  setErrors(0);
+                  setActiveNumber(1);
+                }
+              }}
+              className='rounded-full w-12 h-12 flex place-items-center justify-center text-5xl text-zinc-800'
+            >
+              <IoIosFingerPrint />
+            </button>
           </div>
         </div>
       </div>
