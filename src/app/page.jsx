@@ -97,11 +97,6 @@ export default function Home() {
   }, [activeNumber]);
 
   useEffect(() => {
-    const difficultyDisplay = document.getElementById('difficulty');
-    difficultyDisplay.style.backgroundPosition = `0% ${
-      difficulty * -33.3 + 100
-    }%`;
-
     setTime(50 - difficulty * 5);
 
     setNumbers([]);
@@ -150,7 +145,13 @@ export default function Home() {
                 <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
                 <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
               </div>
-              <div id='difficulty' className='w-8 h-2 rounded'></div>
+              <div
+                id='difficulty'
+                className='w-8 h-2 rounded'
+                style={{
+                  backgroundPosition: `0% ${difficulty * -33.3 + 100}%`,
+                }}
+              ></div>
             </div>
             <Timer width={width} />
             <Keypad
