@@ -102,6 +102,8 @@ export default function Home() {
       difficulty * -33.3 + 100
     }%`;
 
+    setTime(50 - difficulty * 5);
+
     setNumbers([]);
     const range = 4 * (6 + difficulty);
     for (let i = 1; i <= range; i++) setNumbers((prev) => [...prev, i]);
@@ -133,29 +135,6 @@ export default function Home() {
             className='bg-green-900 rounded p-2'
           >
             Set Difficulty
-          </button>
-        </div>
-        <div className='flex gap-2'>
-          <input
-            type='number'
-            id='time-input'
-            min={1}
-            max={60}
-            defaultValue={30}
-            aria-label='time-input'
-            className='p-2 rounded'
-          />
-          <button
-            onClick={() => {
-              if (!start) {
-                const newTime = document.getElementById('time-input').value;
-                setTime(newTime);
-                document.getElementById('time-input').value = 30;
-              }
-            }}
-            className='bg-green-900 rounded p-2'
-          >
-            Set Time
           </button>
         </div>
       </div>
