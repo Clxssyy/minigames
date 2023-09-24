@@ -17,10 +17,14 @@ export default function Home() {
   const [difficulty, setDifficulty] = useState(0);
 
   useEffect(() => {
+    const errorDisplay = document.getElementById('errors');
     for (const x of status) {
       document.getElementById(x).style.backgroundColor = '';
     }
     setStatus([]);
+    errorDisplay.childNodes.forEach((x) => {
+      x.style.backgroundColor = '';
+    });
   }, [start]);
 
   useEffect(() => {
@@ -42,6 +46,8 @@ export default function Home() {
   }, [start]);
 
   useEffect(() => {
+    const errorDisplay = document.getElementById('errors');
+
     if (start) {
       function updateProgress() {
         setWidth((prevWidth) => {
@@ -52,6 +58,9 @@ export default function Home() {
             setStart(!start);
             setErrors(0);
             setActiveNumber(1);
+            errorDisplay.childNodes.forEach((x) => {
+              x.style.backgroundColor = '';
+            });
           }
         });
       }
@@ -67,19 +76,33 @@ export default function Home() {
   }, [time, start]);
 
   useEffect(() => {
+    const errorDisplay = document.getElementById('errors');
+
+    if (errors !== 0) {
+      errorDisplay.childNodes[errors - 1].style.backgroundColor = 'red';
+    }
+
     if (errors === 3) {
       setErrors(0);
       setActiveNumber(1);
       setStart(!start);
+      errorDisplay.childNodes.forEach((x) => {
+        x.style.backgroundColor = '';
+      });
     }
   }, [errors]);
 
   useEffect(() => {
+    const errorDisplay = document.getElementById('errors');
+
     if (start) {
       if (activeNumber === numbers.length + 1) {
         setStart(!start);
         setActiveNumber(1);
         setErrors(0);
+        errorDisplay.childNodes.forEach((x) => {
+          x.style.backgroundColor = '';
+        });
       }
     }
   }, [activeNumber]);
@@ -93,23 +116,15 @@ export default function Home() {
   }, [difficulty]);
 
   return (
-    <main className='h-full w-full flex flex-col gap-2 place-items-center justify-center p-4'>
+    <main className='h-screen flex flex-col gap-2 place-items-center justify-center p-4 bg-stone-500'>
       <h1 className='text-4xl font-bold'>Mini Game</h1>
       <div className='flex gap-4'>
         <div>
           <h2 className='text-2xl font-bold'>Difficulty</h2>
           <p className='text-2xl font-bold'>{difficulty}</p>
         </div>
-        <div>
-          <h2 className='text-2xl font-bold'>Errors</h2>
-          <p className='text-2xl font-bold'>{errors}/3</p>
-        </div>
-        <div>
-          <h2 className='text-2xl font-bold'>Time</h2>
-          <p className='text-2xl font-bold'>{time}</p>
-        </div>
       </div>
-      <div className='h-full w-full flex gap-2 place-items-center justify-center'>
+      <div className='h-full flex gap-2 place-items-center justify-center'>
         <div id='options' className='flex flex-col gap-2'>
           <div className='flex gap-2'>
             <select id='difficulty-options' aria-label='difficulty-options'>
@@ -175,6 +190,11 @@ export default function Home() {
             id='minigame'
             className='w-72 bg-zinc-800 flex flex-col gap-2 p-4 rounded'
           >
+            <div id='errors' className='flex gap-1'>
+              <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
+              <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
+              <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
+            </div>
             <Timer width={width} />
             <Keypad
               numbers={numbers}

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply min-h-screen bg-gray-600;
+  @apply min-h-screen;
 }
 
 #progress {
