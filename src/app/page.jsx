@@ -105,40 +105,37 @@ export default function Home() {
   }, [difficulty]);
 
   return (
-    <main className='h-screen flex flex-col gap-2 place-items-center justify-center p-4 bg-stone-500'>
-      <h1 className='text-4xl font-bold'>Keypad Decryption</h1>
-      <div id='options' className='flex gap-2'>
-        <div className='flex gap-2'>
-          <select
-            id='difficulty-options'
-            aria-label='difficulty-options'
-            className='p-2 rounded'
-          >
-            <option value={0}>0</option>
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-          </select>
-          <button
-            onClick={() => {
-              if (!start) {
-                const newDifficulty =
-                  document.getElementById('difficulty-options').value;
-                setDifficulty(Number(newDifficulty));
-              }
-            }}
-            className='bg-green-900 rounded p-2'
-          >
-            Set Difficulty
-          </button>
-        </div>
+    <main className='min-h-screen flex flex-col gap-2 place-items-center bg-stone-500'>
+      <div className='p-4'>
+        <h1 className='text-4xl font-bold text-center'>Keypad Decryption</h1>
       </div>
-      <div className='h-full flex gap-2 place-items-center justify-center'>
-        <div className='p-2 bg-zinc-700 rounded gap-2 flex flex-col place-items-center'>
-          <div
-            id='minigame'
-            className='w-72 bg-zinc-800 flex flex-col gap-2 p-4 rounded'
-          >
+      <div className='flex gap-2'>
+        <select
+          id='difficulty-options'
+          aria-label='difficulty-options'
+          className='p-2 rounded'
+        >
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+        </select>
+        <button
+          onClick={() => {
+            if (!start) {
+              const newDifficulty =
+                document.getElementById('difficulty-options').value;
+              setDifficulty(Number(newDifficulty));
+            }
+          }}
+          className='bg-green-900 rounded p-2'
+        >
+          Set Difficulty
+        </button>
+      </div>
+      <div className='p-4'>
+        <div className='p-2 bg-zinc-700 rounded flex flex-col gap-2 place-items-center'>
+          <div className='bg-zinc-800 flex flex-col gap-4 p-4 rounded'>
             <div className='flex justify-between'>
               <div id='errors' className='flex gap-1'>
                 <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
@@ -163,17 +160,15 @@ export default function Home() {
               start={start}
             />
           </div>
-          <div className='flex place-items-center'>
-            <button
-              onClick={() => {
-                setStart(!start);
-              }}
-              className='rounded-full w-12 h-12 flex place-items-center justify-center text-5xl text-zinc-800'
-              aria-label='start-button'
-            >
-              <IoIosFingerPrint />
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              setStart(!start);
+            }}
+            className='rounded-full w-12 h-12 flex place-items-center justify-center text-5xl text-zinc-800'
+            aria-label='start-button'
+          >
+            <IoIosFingerPrint />
+          </button>
         </div>
       </div>
     </main>
