@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { IoIosFingerPrint } from 'react-icons/io';
 
 export default function Home() {
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(100);
   const [numbers, setNumbers] = useState(
     Array.from({ length: 24 }, (x, i) => i + 1)
   );
@@ -18,61 +18,61 @@ export default function Home() {
   const [difficulty, setDifficulty] = useState(0);
 
   useEffect(() => {
-    const errorDisplay = document.getElementById('errors');
-    for (const x of status) {
-      document.getElementById(x).style.backgroundColor = '';
-    }
-    setStatus([]);
-    errorDisplay.childNodes.forEach((x) => {
-      x.style.backgroundColor = '';
-    });
-  }, [start]);
-
-  useEffect(() => {
+    // Game Started - Display Random Pattern of Numbers
     if (start) {
       setNumbers(() => {
-        // randomize numbers
         const range = 4 * (6 + difficulty);
         const arr = [];
-        for (let i = 1; i <= range; i++) arr.push(i);
         const newArr = [];
+
+        for (let i = 1; i <= range; i++) arr.push(i);
+
         for (let i = 0; i < range; i++) {
           const index = Math.floor(Math.random() * arr.length);
           newArr.push(arr[index]);
           arr.splice(index, 1);
         }
-        setNumbers(newArr);
+
+        return newArr;
       });
+    }
+
+    // Game Ended - Reset Game States
+    if (!start) {
+      for (const x of status) {
+        document.getElementById(x).style.backgroundColor = '';
+      }
+      setStatus([]);
+
+      const errorDisplay = document.getElementById('errors');
+      errorDisplay.childNodes.forEach((x) => {
+        x.style.backgroundColor = '';
+      });
+
+      setWidth(100);
+      setErrors(0);
+      setActiveNumber(1);
     }
   }, [start]);
 
   useEffect(() => {
-    const errorDisplay = document.getElementById('errors');
+    const updateProgress = () => {
+      setWidth((width) => {
+        if (width > 0) {
+          return width - 100 / time;
+        } else {
+          setStart(!start);
+          return 100;
+        }
+      });
+    };
 
     if (start) {
-      function updateProgress() {
-        setWidth((prevWidth) => {
-          if (prevWidth > 0) {
-            return prevWidth - 100 / time;
-          }
-          if (prevWidth <= 0) {
-            setStart(!start);
-            setErrors(0);
-            setActiveNumber(1);
-            errorDisplay.childNodes.forEach((x) => {
-              x.style.backgroundColor = '';
-            });
-          }
-        });
-      }
-
-      const intervalId = setInterval(updateProgress, 1000); // Adjust the interval duration as needed
+      const intervalId = setInterval(updateProgress, 1000);
 
       return () => {
         clearInterval(intervalId);
       };
-    } else {
-      setWidth(100);
     }
   }, [time, start]);
 
@@ -83,28 +83,16 @@ export default function Home() {
       errorDisplay.childNodes[errors - 1].style.backgroundColor = 'red';
     }
 
+    // Lose Condition
     if (errors === 3) {
-      setErrors(0);
-      setActiveNumber(1);
       setStart(!start);
-      errorDisplay.childNodes.forEach((x) => {
-        x.style.backgroundColor = '';
-      });
     }
   }, [errors]);
 
   useEffect(() => {
-    const errorDisplay = document.getElementById('errors');
-
-    if (start) {
-      if (activeNumber === numbers.length + 1) {
-        setStart(!start);
-        setActiveNumber(1);
-        setErrors(0);
-        errorDisplay.childNodes.forEach((x) => {
-          x.style.backgroundColor = '';
-        });
-      }
+    // Win Condition
+    if (activeNumber === numbers.length + 1) {
+      setStart(!start);
     }
   }, [activeNumber]);
 
@@ -193,13 +181,7 @@ export default function Home() {
           <div className='flex place-items-center'>
             <button
               onClick={() => {
-                if (numbers.length > 0) {
-                  setStart(!start);
-                }
-                if (start) {
-                  setErrors(0);
-                  setActiveNumber(1);
-                }
+                setStart(!start);
               }}
               className='rounded-full w-12 h-12 flex place-items-center justify-center text-5xl text-zinc-800'
             >
