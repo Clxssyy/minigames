@@ -97,6 +97,11 @@ export default function Home() {
   }, [activeNumber]);
 
   useEffect(() => {
+    const difficultyDisplay = document.getElementById('difficulty');
+    difficultyDisplay.style.backgroundPosition = `0% ${
+      difficulty * -33.3 + 100
+    }%`;
+
     if (!start) {
       setNumbers([]);
       const range = 4 * (6 + difficulty);
@@ -107,12 +112,6 @@ export default function Home() {
   return (
     <main className='h-screen flex flex-col gap-2 place-items-center justify-center p-4 bg-stone-500'>
       <h1 className='text-4xl font-bold'>Mini Game</h1>
-      <div className='flex gap-4'>
-        <div>
-          <h2 className='text-2xl font-bold'>Difficulty</h2>
-          <p className='text-2xl font-bold'>{difficulty}</p>
-        </div>
-      </div>
       <div className='h-full flex gap-2 place-items-center justify-center'>
         <div id='options' className='flex flex-col gap-2'>
           <div className='flex gap-2'>
@@ -163,10 +162,13 @@ export default function Home() {
             id='minigame'
             className='w-72 bg-zinc-800 flex flex-col gap-2 p-4 rounded'
           >
-            <div id='errors' className='flex gap-1'>
-              <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
-              <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
-              <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
+            <div className='flex justify-between'>
+              <div id='errors' className='flex gap-1'>
+                <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
+                <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
+                <div className='h-2 w-2 rounded-full bg-neutral-400'></div>
+              </div>
+              <div id='difficulty' className='w-8 h-2 rounded'></div>
             </div>
             <Timer width={width} />
             <Keypad

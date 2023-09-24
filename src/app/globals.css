@@ -17,3 +17,14 @@ body {
 #timer {
   @apply relative bg-green-700 w-full h-10;
 }
+
+#difficulty {
+  background: linear-gradient(
+    rgba(255, 0, 0, 1) 0%,
+    rgba(255, 133, 0, 1) 33%,
+    rgb(251, 255, 8) 66%,
+    rgba(61, 255, 0, 1) 100%
+  );
+  background-position: 0% 100%;
+  background-size: 100% 900%;
+}
