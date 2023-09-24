@@ -58,11 +58,11 @@ export default function Home() {
   useEffect(() => {
     const updateProgress = () => {
       setWidth((width) => {
-        if (width > 0) {
-          return width - 100 / time;
-        } else {
+        if (width <= 0) {
           setStart(!start);
           return 100;
+        } else {
+          return width - 100 / time;
         }
       });
     };
@@ -102,11 +102,9 @@ export default function Home() {
       difficulty * -33.3 + 100
     }%`;
 
-    if (!start) {
-      setNumbers([]);
-      const range = 4 * (6 + difficulty);
-      for (let i = 1; i <= range; i++) setNumbers((prev) => [...prev, i]);
-    }
+    setNumbers([]);
+    const range = 4 * (6 + difficulty);
+    for (let i = 1; i <= range; i++) setNumbers((prev) => [...prev, i]);
   }, [difficulty]);
 
   return (
