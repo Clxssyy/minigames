@@ -184,6 +184,7 @@ export default function Home() {
                 setStart(!start);
               }}
               className='rounded-full w-12 h-12 flex place-items-center justify-center text-5xl text-zinc-800'
+              aria-label='start-button'
             >
               <IoIosFingerPrint />
             </button>
