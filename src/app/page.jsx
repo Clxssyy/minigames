@@ -109,30 +109,6 @@ export default function Home() {
       <div className='p-4'>
         <h1 className='text-4xl font-bold text-center'>Keypad Decryption</h1>
       </div>
-      <div className='flex gap-2'>
-        <select
-          id='difficulty-options'
-          aria-label='difficulty-options'
-          className='p-2 rounded'
-        >
-          <option value={0}>0</option>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-        </select>
-        <button
-          onClick={() => {
-            if (!start) {
-              const newDifficulty =
-                document.getElementById('difficulty-options').value;
-              setDifficulty(Number(newDifficulty));
-            }
-          }}
-          className='bg-green-900 rounded p-2'
-        >
-          Set Difficulty
-        </button>
-      </div>
       <div className='p-4'>
         <div className='p-2 bg-zinc-700 rounded flex flex-col gap-2 place-items-center'>
           <div className='bg-zinc-800 flex flex-col gap-4 p-4 rounded'>
@@ -144,11 +120,40 @@ export default function Home() {
               </div>
               <div
                 id='difficulty'
-                className='w-8 h-2 rounded'
+                className='w-8 h-2 rounded group relative'
                 style={{
                   backgroundPosition: `0% ${difficulty * -33.3 + 100}%`,
                 }}
-              ></div>
+              >
+                <div
+                  className={`invisible absolute bg-zinc-700 left-full top-1/2 transform -translate-y-1/2 rounded p-2
+                    ${
+                      start
+                        ? ''
+                        : 'group-hover:visible invisible absolute bg-zinc-700'
+                    }`}
+                >
+                  <div className='flex gap-2'>
+                    <select
+                      id='difficulty-options'
+                      aria-label='difficulty-options'
+                      className='p-2 rounded'
+                      onChange={() => {
+                        if (!start) {
+                          const newDifficulty =
+                            document.getElementById('difficulty-options').value;
+                          setDifficulty(Number(newDifficulty));
+                        }
+                      }}
+                    >
+                      <option value={0}>0</option>
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
             <Timer width={width} />
             <Keypad
