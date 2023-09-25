@@ -1,6 +1,6 @@
 'use client';
 
-import Keypad from '@/components/Keypad';
+import Keys from '@/components/Keys';
 import Timer from '@/components/Timer';
 import { useEffect, useState } from 'react';
 import { IoIosFingerPrint } from 'react-icons/io';
@@ -156,7 +156,7 @@ export default function Home() {
               </div>
             </div>
             <Timer width={width} />
-            <Keypad
+            <Keys
               numbers={numbers}
               activeNumber={activeNumber}
               setActiveNumber={setActiveNumber}

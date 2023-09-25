@@ -1,4 +1,4 @@
-const Keypad = (props) => {
+const Keys = (props) => {
   return (
     <div className='grid grid-cols-4 border border-black'>
       {props.numbers.map((number, index) => {
@@ -48,4 +48,4 @@ const Keypad = (props) => {
   );
 };
 
-export default Keypad;
+export default Keys;
