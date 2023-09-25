@@ -13,7 +13,7 @@ export default function Home() {
   const [activeNumber, setActiveNumber] = useState(1);
   const [errors, setErrors] = useState(0);
   const [status, setStatus] = useState([]);
-  const [time, setTime] = useState(30);
+  const [time, setTime] = useState(0);
   const [start, setStart] = useState(false);
   const [difficulty, setDifficulty] = useState(0);
 
@@ -74,7 +74,7 @@ export default function Home() {
         clearInterval(intervalId);
       };
     }
-  }, [time, start]);
+  }, [start]);
 
   useEffect(() => {
     const errorDisplay = document.getElementById('errors');
