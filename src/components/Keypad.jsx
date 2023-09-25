@@ -47,6 +47,7 @@ const Keypad = () => {
         return newArr;
       });
 
+      updateProgress();
       const intervalId = setInterval(updateProgress, 1000);
 
       return () => {
