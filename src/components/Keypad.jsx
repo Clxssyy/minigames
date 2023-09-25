@@ -18,6 +18,17 @@ const Keypad = () => {
   const [difficulty, setDifficulty] = useState(0);
 
   useEffect(() => {
+    const updateProgress = () => {
+      setWidth((width) => {
+        if (width <= 0) {
+          setStart(!start);
+          return 100;
+        } else {
+          return width - 100 / time;
+        }
+      });
+    };
+
     // Game Started - Display Random Pattern of Numbers
     if (start) {
       setNumbers(() => {
@@ -35,6 +46,12 @@ const Keypad = () => {
 
         return newArr;
       });
+
+      const intervalId = setInterval(updateProgress, 1000);
+
+      return () => {
+        clearInterval(intervalId);
+      };
     }
 
     // Game Ended - Reset Game States
@@ -52,27 +69,6 @@ const Keypad = () => {
       setWidth(100);
       setErrors(0);
       setActiveNumber(1);
-    }
-  }, [start]);
-
-  useEffect(() => {
-    const updateProgress = () => {
-      setWidth((width) => {
-        if (width <= 0) {
-          setStart(!start);
-          return 100;
-        } else {
-          return width - 100 / time;
-        }
-      });
-    };
-
-    if (start) {
-      const intervalId = setInterval(updateProgress, 1000);
-
-      return () => {
-        clearInterval(intervalId);
-      };
     }
   }, [start]);
 
