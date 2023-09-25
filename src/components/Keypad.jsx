@@ -127,25 +127,23 @@ const Keypad = () => {
                     : 'group-hover:visible invisible absolute bg-zinc-700'
                 }`}
               >
-                <div className='flex gap-2'>
-                  <select
-                    id='difficulty-options'
-                    aria-label='difficulty-options'
-                    className='p-2 rounded'
-                    onChange={() => {
-                      if (!start) {
-                        const newDifficulty =
-                          document.getElementById('difficulty-options').value;
-                        setDifficulty(Number(newDifficulty));
-                      }
-                    }}
-                  >
-                    <option value={0}>0</option>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                  </select>
-                </div>
+                <select
+                  id='difficulty-options'
+                  aria-label='difficulty-options'
+                  className='p-2 rounded'
+                  onChange={() => {
+                    if (!start) {
+                      const newDifficulty =
+                        document.getElementById('difficulty-options').value;
+                      setDifficulty(Number(newDifficulty));
+                    }
+                  }}
+                >
+                  <option value={0}>0</option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                </select>
               </div>
             </div>
           </div>
