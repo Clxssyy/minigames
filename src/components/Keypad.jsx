@@ -20,6 +20,7 @@ const Keypad = () => {
   useEffect(() => {
     const updateProgress = () => {
       setWidth((width) => {
+        // Lose Condition
         if (width <= 0) {
           setStart(!start);
           return 100;
