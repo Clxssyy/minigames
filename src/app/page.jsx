@@ -17,7 +17,7 @@ export default function Home() {
         <h2 className='text-2xl font-bold'>Coming Soon</h2>
         <ul className='list-disc'>
           <li>
-            <Link href='/'>temp</Link>
+            <Link href='/minigames/memory'>Memory</Link>
           </li>
         </ul>
       </div>
